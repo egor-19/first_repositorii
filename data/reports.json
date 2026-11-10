@@ -1,0 +1,52 @@
+{
+  "new_passenger_registrations": {
+    "name": "Регистрации новых пассажиров по месяцам",
+    "title": "Регистрации новых пассажиров",
+    "description": "Статистика новых регистраций пассажиров по месяцам за выбранный год и месяц",
+    "create_procedure": "CreateNewPassengerReport",
+    "create_params": ["year", "month"],
+    "view_sql": "new_passenger_registrations.sql",
+    "view_params": ["year", "month"],
+    "form_fields": [
+      {
+        "name": "year",
+        "label": "Год",
+        "type": "number",
+        "required": true,
+        "placeholder": "2024"
+      },
+      {
+        "name": "month",
+        "label": "Месяц",
+        "type": "number",
+        "required": false,
+        "placeholder": "1-12"
+      }
+    ]
+  },
+  "popular_routes": {
+    "name": "Популярные направления",
+    "title": "Популярные направления",
+    "description": "Статистика по самым востребованным маршрутам за выбранный год и месяц",
+    "create_procedure": "CreatePopularRoutesReport",
+    "create_params": ["year", "month"],
+    "view_sql": "popular_routes.sql",
+    "view_params": ["year", "month"],
+    "form_fields": [
+      {
+        "name": "year",
+        "label": "Год",
+        "type": "number",
+        "required": true,
+        "placeholder": "2024"
+      },
+      {
+        "name": "month",
+        "label": "Месяц",
+        "type": "number",
+        "required": false,
+        "placeholder": "1-12"
+      }
+    ]
+  }
+} 

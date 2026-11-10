@@ -1,0 +1,18 @@
+{
+  "tickets_by_passenger": {
+    "sql": "tickets_by_passenger.sql",
+    "params": ["first_name", "last_name"],
+    "columns": ["ticket_id", "flight_number", "departure_airport", "arrival_airport", "departure_date", "arrival_date", "purchase_date", "ticket_price", "ticket_class"]
+  },
+  "flights_by_departure": {
+    "sql": "flights_by_departure.sql",
+    "params": ["departure_airport"],
+    "columns": ["flight_id", "flight_number", "departure_airport", "arrival_airport", "departure_date", "arrival_date"]
+  },
+  
+  "bonus_miles": {
+    "sql": "1.sql",
+    "params": ["min_miles"],
+    "columns": ["id", "username", "password", "full_name", "created_at", "user_group", "miles_amount", "last_update"]
+  }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Поиск по категории — Супермаркет</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: min(420px, 90%);
+      margin: 0 auto;
+    }
+    input[type="text"] {
+      padding: 12px 14px;
+      border: 1px solid rgba(148,163,184,.3);
+      border-radius: 10px;
+      background: color-mix(in oklab, var(--card), white 4%);
+      color: var(--text);
+      font-size: 15px;
+      transition: all .2s ease;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring), transparent 70%);
+    }
+    button {
+      --btn-bg: var(--primary);
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      background: linear-gradient(180deg, color-mix(in oklab, var(--btn-bg), white 10%), var(--btn-bg));
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: all .25s ease;
+    }
+    button:hover {
+      background: color-mix(in oklab, var(--btn-bg), white 8%);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2) inset;
+    }
+    .message {
+      margin-top: 16px;
+      color: var(--danger);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Параметризованный запрос</h1>
+    <h3>Введите параметры для поиска данных</h3>
+
+    <form action="/query/result" method="post" id="mainForm">
+      <label for="query_type">Тип запроса:</label>
+      <select name="query_type" id="query_type" onchange="showFields()">
+        <option value="">Выберите...</option>
+        <option value="tickets_by_passenger">Билеты по пассажиру</option>
+        <option value="flights_by_departure">Рейсы по аэропорту</option>
+        <option value="bonus_miles">Пассажиры с милями больше N</option>
+      </select>
+
+      <div id="fields_tickets_by_passenger" style="display:none;">
+        <input type="text" name="first_name" placeholder="Имя пассажира">
+        <input type="text" name="last_name" placeholder="Фамилия пассажира">
+      </div>
+
+      <div id="fields_flights_by_departure" style="display:none;">
+        <input type="text" name="departure_airport" placeholder="Аэропорт отправления">
+      </div>
+
+      <div id="fields_money" style="display:none;">
+        <input type="text" name="first_name" placeholder="Имя пассажира">
+        <input type="text" name="last_name" placeholder="Фамилия пассажира">
+      </div>
+
+
+      <div id="fields_bonus_miles" style="display:none;">
+        <input type="number" name="min_miles" placeholder="Минимум миль">
+      </div>
+
+
+      <button type="submit">🔍 Найти</button>
+    </form>
+
+    <script>
+    function showFields() {
+      var type = document.getElementById('query_type').value;
+      document.getElementById('fields_tickets_by_passenger').style.display = (type === 'tickets_by_passenger') ? 'block' : 'none';
+      document.getElementById('fields_flights_by_departure').style.display = (type === 'flights_by_departure') ? 'block' : 'none';
+      document.getElementById('fields_money').style.display = (type === 'money') ? 'block' : 'none';
+      document.getElementById('fields_bonus_miles').style.display = (type === 'bonus_miles') ? 'block' : 'none';
+    }
+    </script>
+
+    {% if error %}
+      <p class="message">{{ error }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>

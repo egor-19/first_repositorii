@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>История начисления бонусов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <div style="max-width: 1200px; margin: 60px auto; background: #fff; border-radius: 16px; box-shadow: var(--shadow, 0 20px 40px rgba(0,0,0,.35)); padding: 40px 40px 32px 40px; text-align: center;">
+        <h1 style="margin-bottom: 24px;">История начисления бонусов</h1>
+        {% if total_bonus is not none %}
+            <div style="font-size: 22px; margin-bottom: 18px; color: #0a7; font-weight: 600;">Суммарно начислено бонусов: {{ total_bonus }}</div>
+        {% endif %}
+        {% if error %}
+            <p style="color: var(--danger, #ef4444); font-size: 18px;">{{ error }}</p>
+        {% elif history and history|length > 0 %}
+            <table style="width:100%; margin: 0 auto 24px auto; background: transparent; color: #222; border-collapse: collapse; font-size: 18px;">
+                <tr style="background: #f1f5f9;">
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Дата вылета</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Откуда</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Куда</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Цена билета</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Класс</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Фиксированный бонус</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Всего бонусов</th>
+                    <th style="padding: 10px 12px; border-bottom: 2px solid #ddd;">Дата начисления</th>
+                </tr>
+                {% for row in history %}
+                <tr>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Дата вылета'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Откуда'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Куда'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Цена билета'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Класс'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Фиксированный бонус'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Всего бонусов'] }}</td>
+                    <td style="padding: 8px 12px; border-bottom: 1px solid #eee;">{{ row['Дата начисления'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p style="color: var(--muted, #94a3b8); font-size: 18px;">У вас пока нет начисленных бонусов.</p>
+        {% endif %}
+        <a href="/exit" class="button exit" style="margin-top: 32px;">Выйти</a>
+    </div>
+</body>
+</html>

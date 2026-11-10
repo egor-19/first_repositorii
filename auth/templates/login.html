@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизация — Бонусная прогармма</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: min(360px, 90%);
+      margin: 0 auto;
+    }
+    label {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: .2px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(148,163,184,.3);
+      border-radius: 10px;
+      background: color-mix(in oklab, var(--card), white 4%);
+      color: var(--text);
+      font-size: 15px;
+      transition: all .2s ease;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+      outline: none;
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring), transparent 70%);
+    }
+    input[type="submit"] {
+      background: linear-gradient(180deg, color-mix(in oklab, var(--primary), white 10%), var(--primary));
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 16px;
+      letter-spacing: .3px;
+      cursor: pointer;
+      transition: background .25s, transform .1s ease;
+    }
+    input[type="submit"]:hover {
+      background: color-mix(in oklab, var(--primary), white 8%);
+      transform: translateY(-1px);
+    }
+    input[type="submit"]:active {
+      transform: translateY(0);
+    }
+    .message {
+      margin-top: 16px;
+      color: var(--danger);
+      font-weight: 600;
+    }
+    .footer {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Вход в систему</h1>
+    <h3>Информационная система «Бонусная программа»</h3>
+
+    <form method="post">
+      <div>
+        <label for="login">Логин</label>
+        <input type="text" id="login" name="login" placeholder="Введите логин" required>
+      </div>
+
+      <div>
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+      </div>
+
+      <input type="submit" value="Войти">
+    </form>
+
+    {% if message %}
+      <p class="message">{{ message }}</p>
+    {% endif %}
+
+    <div class="footer">© Бонусная программа, {{ now().year if now else '2025' }}</div>
+  </div>
+</body>
+</html>

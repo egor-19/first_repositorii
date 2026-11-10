@@ -1,0 +1,5 @@
+{
+  "manager": ["main_menu"],
+  "admin": ["model_app", "auth_blueprint", "main_menu", "reports_blueprint", "reports_bp", "basket_bp"],
+  "user": ["model_blueprint", "user_menu_blueprint", "user_menu", "basket_bp"]
+}

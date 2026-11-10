@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ошибка заказа</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="alert alert-danger text-center">
+        <h2>Ошибка при оформлении заказа</h2>
+        <p>{{ message }}</p>
+        <a href="{{ return_url }}" class="btn btn-primary">Попробовать снова</a>
+    </div>
+</div>
+</body>
+</html>

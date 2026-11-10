@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню отчетов</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Система отчетов</h1>
+        <h3>Управление отчетами супермаркета</h3>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="report-section">
+            <h2>Универсальная система отчетов</h2>
+
+            <form id="reportForm">
+                <div class="form-group">
+                    <label for="report_type">Тип отчета:</label>
+                    <select id="report_type" name="report_type" required>
+                        <option value="">-- Выберите тип отчета --</option>
+                        {% for report_key, report_config in report_types.items() %}
+                            <option value="{{ report_key }}">{{ report_config.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <a href="#" id="createButton" class="button">Создать отчет</a>
+                    <a href="#" id="viewButton" class="button button-view">Просмотреть отчет</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="center">
+            <a href="{{ url_for('main_menu') }}" class="button exit">
+                Назад в главное меню
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('createButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            const reportType = document.getElementById('report_type').value;
+            if (reportType) {
+                window.location.href = "{{ url_for('reports_bp.create_report') }}?type=" + reportType;
+            } else {
+                alert('Пожалуйста, выберите тип отчета');
+            }
+        });
+
+        document.getElementById('viewButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            const reportType = document.getElementById('report_type').value;
+            if (reportType) {
+                window.location.href = "{{ url_for('reports_bp.view_report') }}?type=" + reportType;
+            } else {
+                alert('Пожалуйста, выберите тип отчета');
+            }
+        });
+    </script>
+</body>
+</html>

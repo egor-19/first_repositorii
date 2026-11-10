@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню — Бонусная программа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <h1>Информационная система "Бонусная программа"</h1>
+    <p>Добро пожаловать, {{ username }} (роль: {{ group }})</p>
+    <h3>Выберите действие:</h3>
+
+    <!-- <a href="/order" class="button">Корзина покупок</a><br> -->
+    <!-- Параметризованный запрос -->
+    <a href="/query" class="button">Выполнить параметризованный запрос</a><br>
+
+    <!-- Новый пункт: отчёты -->
+    <a href="/reports" class="button">Работа с отчётами</a><br>
+
+    <!-- Выход -->
+    <a href="/exit" class="button exit">Завершить работу</a>
+</body>
+</html>

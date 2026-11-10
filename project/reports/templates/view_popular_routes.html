@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Популярные направления</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Популярные направления</h1>
+        <h3>{{ report_config.description }}</h3>
+        {% if report_data %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Год</th>
+                        <th>Месяц</th>
+                        <th>Аэропорт отправления</th>
+                        <th>Аэропорт прибытия</th>
+                        <th>Продано билетов</th>
+                        <th>Дата создания отчета</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in report_data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[5] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="no-data">
+                <p>Нет данных о маршрутах за указанный период</p>
+            </div>
+        {% endif %}
+        <div class="button-group">
+            <a href="{{ url_for('reports_bp.view_report', type=report_type) }}" class="button">Новый поиск</a>
+            <a href="{{ url_for('reports_bp.reports_menu') }}" class="button button-secondary">Меню отчетов</a>
+        </div>
+    </div>
+</body>
+</html>

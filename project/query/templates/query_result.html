@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты запроса</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h2 { color: blue; }
+        table { border-collapse: collapse; margin: 0 auto; border: 2px solid green; }
+        th, td { border: 1px solid green; padding: 6px 12px; }
+        th { color: green; }
+    </style>
+</head>
+<body>
+    <h2>Результаты запроса</h2>
+    {% if items and items|length > 0 %}
+        {% if all_empty %}
+            <p>Нет данных для отображения.</p>
+        {% else %}
+            <table>
+                <tr>
+                {% for col in columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+                </tr>
+                {% for row in items %}
+                <tr>
+                    {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% else %}
+        <p>Нет данных по указанным параметрам.</p>
+    {% endif %}
+</body>
+    <div style="margin-top: 32px;">
+        <a href="/" class="button" style="padding: 10px 24px; background: #2563eb; color: #fff; border-radius: 8px; text-decoration: none; font-size: 18px;">Вернуться в главное меню</a>
+    </div>
+</body>
+</html>

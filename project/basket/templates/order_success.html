@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ оформлен</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="alert alert-success text-center">
+        <h2>Заказ успешно оформлен!</h2>
+        <p>Номер вашего заказа: <strong>#{{ order_id }}</strong></p>
+        <p>Спасибо за покупку!</p>
+        <a href="{{ return_url }}" class="btn btn-primary">Вернуться к покупкам</a>
+        <a href="{{ url_for('main_menu') }}" class="btn btn-secondary">Главное меню</a>
+    </div>
+</div>
+</body>
+</html>

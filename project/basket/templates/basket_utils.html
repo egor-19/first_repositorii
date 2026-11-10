@@ -1,0 +1,25 @@
+{% macro render_item(item, show_amount=False, show_form=False) %}
+<div class="card mb-3 shadow-sm">
+    <div class="card-body">
+
+        <h5 class="card-title text-primary">{{ item['prod_name'] }}</h5>
+
+        <p class="card-text mb-1">
+            <strong>Цена:</strong> {{ item['prod_price'] }} ₽
+        </p>
+
+        {% if show_amount %}
+        <p class="card-text">
+            <strong>Количество:</strong> {{ item['amount'] }}
+        </p>
+        {% endif %}
+
+        {% if show_form %}
+        <form action="{{ url_for('basket_bp.add_to_basket') }}" method="POST" class="mt-2">
+            <input type="hidden" name="prod_id" value="{{ item['prod_id'] }}">
+            <button type="submit" class="btn btn-primary btn-sm">Добавить в корзину</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}

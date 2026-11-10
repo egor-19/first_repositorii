@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать билет</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Создать билет</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label for="flight_date" class="form-label">Дата вылета</label>
+            <input type="date" class="form-control" id="flight_date" name="flight_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="departure_airport" class="form-label">Откуда</label>
+            <input type="text" class="form-control" id="departure_airport" name="departure_airport" required>
+        </div>
+        <div class="mb-3">
+            <label for="arrival_airport" class="form-label">Куда</label>
+            <input type="text" class="form-control" id="arrival_airport" name="arrival_airport" required>
+        </div>
+        <div class="mb-3">
+            <label for="ticket_price" class="form-label">Цена билета</label>
+            <input type="number" class="form-control" id="ticket_price" name="ticket_price" required>
+        </div>
+        <div class="mb-3">
+            <label for="ticket_class" class="form-label">Класс</label>
+            <select class="form-select" id="ticket_class" name="ticket_class" required>
+                <option value="эконом">Эконом</option>
+                <option value="бизнес">Бизнес</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Создать билет</button>
+        <a href="/order" class="btn btn-secondary ms-2">Назад в корзину</a>
+    </form>
+    {% if message %}
+        <div class="alert alert-info mt-3">{{ message }}</div>
+    {% endif %}
+</div>
+</body>
+</html>

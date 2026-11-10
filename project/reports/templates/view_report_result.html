@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детальный отчет по продажам</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <h1>{{ report_config.title or 'Отчет' }}</h1>
+        <h3>{{ report_config.description }}</h3>
+
+        {% if report_data and columns %}
+            <table>
+                <thead>
+                    <tr>
+                        {% for col in columns %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in report_data %}
+                        <tr>
+                            {% for col in columns %}
+                                <td>{{ row[col] if row is mapping else row[loop.index0] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="no-data">
+                <p>Нет данных для выбранного отчета за указанный период</p>
+            </div>
+        {% endif %}
+
+        <div class="button-group">
+            <a href="{{ url_for('reports_bp.view_report', type=report_type) }}" class="button">
+                Новый поиск
+            </a>
+            <a href="{{ url_for('reports_bp.reports_menu') }}" class="button button-secondary">
+                Меню отчетов
+            </a>
+        </div>
+    </div>
+</body>
+</html>

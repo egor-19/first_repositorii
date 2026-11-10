@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вы завершили работу</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2e8b57;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #1e6b47;
+        }
+    </style>
+</head>
+<body>
+    <h1>Вы завершили работу в системе</h1>
+    <p>Сессия завершена. Чтобы войти снова — нажмите кнопку ниже.</p>
+
+    <a href="{{ url_for('auth_blueprint.auth_form') }}" class="button">Перейти к авторизации</a>
+</body>
+</html>

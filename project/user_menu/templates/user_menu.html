@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню — Бонусная программа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <h1>Информационная система "Бонусная программа"</h1>
+    <p>Добро пожаловать, {{ full_name }} (роль: {{ group }})</p>
+    <h3>Выберите действие:</h3>
+    <a href="/user_menu/bonus_history" class="button">Посмотреть историю бонусов</a><br>
+    <a href="{{ url_for('basket_bp.order_index') }}" class="button">Перейти в корзину</a><br>
+    <a href="{{ url_for('auth_blueprint.logout') }}" class="button exit">Выйти из системы</a><br>
+</body>
+</html>
